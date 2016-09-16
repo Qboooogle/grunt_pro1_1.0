@@ -8,7 +8,8 @@ module.exports = function (grunt) {
       my_target : {
         files : {
           'dist/js/index.min.js':['build/js/index.js'],
-          'dist/js/index1.min.js':['build/js/index1.js']
+          'dist/js/index1.min.js':['build/js/index.js'],
+          'dist/js/index2.min.js':['build/js/index.js']
         }
       }
     }
