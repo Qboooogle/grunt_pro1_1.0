@@ -1,54 +1,64 @@
 module.exports = function (grunt) {
   grunt.initConfig({
-    watch: {
-      files: ["build/less/*.less"],
-      task: ["less", "cssmin"]
-    },
-    concat: {
-      options: {
-        separator: ';'
-      },
-      dist: {
-        src:["build/less/index1.less","build/less/index.less"],
-        dest:"build/less/index3.less"
-      }
-    },
-    less : {
-      development: {
-        options: {
-          compress: true
-        },
-        file: {
-          "dist/css/index1.css":"build/less/index1.less",
-          "dist/css/index.css" : "build/less/index.less"
-        }
-      }
-    },
+    pkg: grunt.file.readJSON('package.json'),
     uglify: {
       options: {
-        mangle:true,
-        preserveComments:'some'
-      }
-    },
-
-    cssmin: {
-      compress: {
-        files: {
-          "dist/css/index.css": [
-          "build/less/index1.less",
-          "build/less/index.less"
-        ]
-        }
+        banner: '/*! <%= pkg.file %>Qboooogle <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      },
+      build: {
+        src: ['build/js/<%=pkg.file %>.js','build/js/<%=pkg.file %>1.js'],
+        dest: 'dist/js/<%= pkg.file %>.min.js'
       }
     }
-  });
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks("grunt-contrib-concat");
-  grunt.loadNpmTasks("grunt-contrib-watch");
-  grunt.loadNpmTasks("grunt-contrib-uglify");
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
+    // watch: {
+    //   files: ["build/less/*.less","build/js/*.js"],
+    //   task: ["less", "cssmin"]
+    // },
+    // concat: {
+    //   options: {
+    //     separator: ';'
+    //   },
+    //   dist: {
+    //     src:["build/less/index1.less","build/less/index.less"],
+    //     dest:"build/less/index3.less"
+    //   }
+    // },
+    // less : {
+    //   development: {
+    //     options: {
+    //       compress: true
+    //     },
+    //     file: {
+    //       "dist/css/index1.css":"build/less/index1.less",
+    //       "dist/css/index.css" : "build/less/index.less"
+    //     }
+    //   }
+    // },
+    // uglify: {
+    //   options: {
+    //     mangle:true,
+    //     preserveComments:'some'
+    //   }
+    // },
 
-  grunt.registerTask('default', ['concat','less','cssmin','watch']);
+    // cssmin: {
+    //   compress: {
+    //     files: {
+    //       "dist/css/index.css": [
+    //       "build/less/index1.less",
+    //       "build/less/index.less"
+    //     ]
+    //     }
+    //   }
+    // }
+  });
+  // grunt.loadNpmTasks('grunt-contrib-less');
+  // grunt.loadNpmTasks("grunt-contrib-concat");
+  // grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks("grunt-contrib-uglify");
+  // grunt.loadNpmTasks('grunt-contrib-cssmin');
+
+  grunt.registerTask('default', ['uglify']);
 }
 
 
