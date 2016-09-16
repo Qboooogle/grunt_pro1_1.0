@@ -31,6 +31,14 @@ module.exports = function (grunt) {
         files: {
           "dist/css/index.css":["build/less/index1.less","build/less/index.less"]
         }
+      },
+      production: {
+        options: {
+          compress: true
+        },
+        files: {
+          "dist/css/index4.css":["build/less/index1.less","build/less/index.less"]
+        }
       }
     }
     // uglify: {
