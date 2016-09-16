@@ -26,11 +26,10 @@ module.exports = function (grunt) {
     less : {
       development: {
         options: {
-          compress: true
+          compress: false
         },
         files: {
-          "dist/css/index1.css":"build/less/index1.less",
-          "dist/css/index.css" : "build/less/index.less"
+          "dist/css/index.css":["build/less/index1.less","build/less/index.less"]
         }
       }
     }
