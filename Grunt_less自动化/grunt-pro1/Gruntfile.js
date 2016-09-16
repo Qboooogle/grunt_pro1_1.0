@@ -23,24 +23,24 @@ module.exports = function (grunt) {
     //     dest:"build/less/index3.less"
     //   }
     // },
-    less : {
-      development: {
-        options: {
-          compress: false
-        },
-        files: {
-          "dist/css/index.css":["build/less/index1.less","build/less/index.less"]
-        }
-      },
-      production: {
-        options: {
-          compress: true
-        },
-        files: {
-          "dist/css/index4.css":["build/less/index1.less","build/less/index.less"]
-        }
-      }
-    }
+    // less : {
+    //   development: {
+    //     options: {
+    //       compress: false
+    //     },
+    //     files: {
+    //       "dist/css/index.css":["build/less/index1.less","build/less/index.less"]
+    //     }
+    //   },
+    //   production: {
+    //     options: {
+    //       compress: true
+    //     },
+    //     files: {
+    //       "dist/css/index4.css":["build/less/index1.less","build/less/index.less"]
+    //     }
+    //   }
+    // }
     // uglify: {
     //   options: {
     //     mangle:true,
@@ -58,14 +58,26 @@ module.exports = function (grunt) {
     //     }
     //   }
     // }
+    image : {
+      dynamic : {
+        files:[{
+          expand:true,
+          cwd:'build/img/',
+          src:['**/*.{png,jpg,gif,svg,jpeg'],
+          dest:'dist/img/'
+        }]
+      }
+    }
   });
+  // Optimize images
+  grunt.loadNpmTasks('grunt-image');
    grunt.loadNpmTasks('grunt-contrib-less');
   // grunt.loadNpmTasks("grunt-contrib-concat");
   // grunt.loadNpmTasks("grunt-contrib-watch");
   // grunt.loadNpmTasks("grunt-contrib-uglify");
   // grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  grunt.registerTask('default', ['less']);
+  grunt.registerTask('default', ['image']);
 }
 
 
