@@ -5,9 +5,10 @@ module.exports = function (grunt) {
       options: {
         banner: '/*! <%= pkg.file %>Qboooogle <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
-      build: {
-        src: ['build/js/<%=pkg.file %>.js','build/js/<%=pkg.file %>1.js'],
-        dest: 'dist/js/<%= pkg.file %>.min.js'
+      my_target : {
+        files : {
+          'dist/js/index.min.js':['build/js/index.js']
+        }
       }
     }
     // watch: {
