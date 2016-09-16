@@ -12,7 +12,7 @@ module.exports = function (grunt) {
     },
     watch: {
       files: ["build/less/*.less","build/js/*.js"],
-      tasks: ["less", "uglify"]
+      tasks: ["less", "uglify","image","clean"]
     },
     // concat: {
     //   options: {
@@ -40,7 +40,10 @@ module.exports = function (grunt) {
           "dist/css/index5.css":["build/less/index1.less","build/less/index.less"]
         }
       }
-    }
+    },
+    clean: {
+      build: ["build/img/*"]
+    },
     // uglify: {
     //   options: {
     //     mangle:true,
@@ -58,16 +61,16 @@ module.exports = function (grunt) {
     //     }
     //   }
     // }
-    // image : {
-    //   dynamic : {
-    //     files:[{
-    //       expand:true,
-    //       cwd:'build/img/',
-    //       src:['**/*.{png,jpg,gif,svg,jpeg'],
-    //       dest:'dist/img/'
-    //     }]
-    //   }
-    // }
+    image: {
+      dynamic: {
+        files: [{
+          expand: true,
+          cwd: 'build/img/',
+          src: ['**/*.{png,jpg,gif,svg,jpeg}'],
+          dest: 'dist/img/'
+        }]
+      }
+    },
     // jshint : {
     //   options: {
     //     jshintrc :'.jshintrc'
@@ -82,8 +85,9 @@ module.exports = function (grunt) {
   });
 
   // grunt.loadNpmTasks('grunt-contrib-jshint');
-    // grunt.loadNpmTasks('grunt-image');
+    grunt.loadNpmTasks('grunt-image');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-clean');
   // grunt.loadNpmTasks("grunt-contrib-concat");
    grunt.loadNpmTasks("grunt-contrib-watch");
    grunt.loadNpmTasks("grunt-contrib-uglify");
