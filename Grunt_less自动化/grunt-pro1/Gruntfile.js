@@ -67,17 +67,30 @@ module.exports = function (grunt) {
           dest:'dist/img/'
         }]
       }
+    },
+    jshint : {
+      options: {
+        jshintrc :'.jshintrc'
+      },
+      core: {
+        src:'dist/js/index.min.js'
+      },
+      demo: {
+         src:'dist/js/index1.min.js'
+      }
     }
   });
-  // Optimize images
-  grunt.loadNpmTasks('grunt-image');
-   grunt.loadNpmTasks('grunt-contrib-less');
+
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-image');
+   // grunt.loadNpmTasks('grunt-contrib-less');
   // grunt.loadNpmTasks("grunt-contrib-concat");
   // grunt.loadNpmTasks("grunt-contrib-watch");
   // grunt.loadNpmTasks("grunt-contrib-uglify");
   // grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  grunt.registerTask('default', ['image']);
+  grunt.registerTask('link', ['jshint']);
+   grunt.registerTask('default', ['image','jshint']);
 }
 
 
