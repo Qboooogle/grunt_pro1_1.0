@@ -71,6 +71,14 @@ module.exports = function (grunt) {
         }]
       }
     },
+    csslint: {
+      options: {
+        csslintrc: 'build/less/.csslintrc'
+      },
+      dist:[
+      'dist/css/index1.css',
+      ]
+    }
     // jshint : {
     //   options: {
     //     jshintrc :'.jshintrc'
@@ -88,13 +96,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-image');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-csslint');
   // grunt.loadNpmTasks("grunt-contrib-concat");
    grunt.loadNpmTasks("grunt-contrib-watch");
    grunt.loadNpmTasks("grunt-contrib-uglify");
   // grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  // grunt.registerTask('link', ['jshint']);
-   grunt.registerTask('default', ['watch']);
+   grunt.registerTask('link', ['csslint']);
+   grunt.registerTask('default', ['csslint','watch']);
 }
 
 
