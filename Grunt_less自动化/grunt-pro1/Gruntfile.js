@@ -78,7 +78,13 @@ module.exports = function (grunt) {
       dist:[
       'dist/css/index1.css',
       ]
-    }
+    },
+    bootlint: {
+      options: {
+        relaxerror: ['W002','W003','W005','W007']
+      },
+      files: ['*.html']
+    },
     // jshint : {
     //   options: {
     //     jshintrc :'.jshintrc'
@@ -97,13 +103,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-csslint');
+    grunt.loadNpmTasks('grunt-bootlint');
   // grunt.loadNpmTasks("grunt-contrib-concat");
    grunt.loadNpmTasks("grunt-contrib-watch");
    grunt.loadNpmTasks("grunt-contrib-uglify");
   // grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-   grunt.registerTask('link', ['csslint']);
-   grunt.registerTask('default', ['csslint','watch']);
+   grunt.registerTask('link', ['csslint','bootlint']);
+   grunt.registerTask('default', ['csslint','bootlint']);
 }
 
 
