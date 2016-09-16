@@ -11,6 +11,7 @@ body {
 }
 body header {
   color: #f00;
+  font-size: 14px;
 }
 body footer {
   background: rgba(100, 100, 100, 0.8);

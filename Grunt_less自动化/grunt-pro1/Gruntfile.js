@@ -1,19 +1,19 @@
 module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    // uglify: {
-    //   options: {
-    //     banner: '/*! <%= pkg.file %>Qboooogle <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-    //   },
-    //   build : {
-    //      src: 'build/less/index.less',
-    //      dest:'dist/css/index.css'
-    //   }
-    // }
-    // watch: {
-    //   files: ["build/less/*.less","build/js/*.js"],
-    //   task: ["less", "cssmin"]
-    // },
+    uglify: {
+      options: {
+        banner: '/*! <%= pkg.file %> Qboooogle <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      },
+      build : {
+         src: 'build/js/index.js',
+         dest:'dist/js/index6.min.js'
+      }
+    },
+    watch: {
+      files: ["build/less/*.less","build/js/*.js"],
+      tasks: ["less", "uglify"]
+    },
     // concat: {
     //   options: {
     //     separator: ';'
@@ -23,24 +23,24 @@ module.exports = function (grunt) {
     //     dest:"build/less/index3.less"
     //   }
     // },
-    // less : {
-    //   development: {
-    //     options: {
-    //       compress: false
-    //     },
-    //     files: {
-    //       "dist/css/index.css":["build/less/index1.less","build/less/index.less"]
-    //     }
-    //   },
-    //   production: {
-    //     options: {
-    //       compress: true
-    //     },
-    //     files: {
-    //       "dist/css/index4.css":["build/less/index1.less","build/less/index.less"]
-    //     }
-    //   }
-    // }
+    less : {
+      development: {
+        options: {
+          compress: false
+        },
+        files: {
+          "dist/css/index6.css":["build/less/index1.less","build/less/index.less"]
+        }
+      },
+      production: {
+        options: {
+          compress: true
+        },
+        files: {
+          "dist/css/index5.css":["build/less/index1.less","build/less/index.less"]
+        }
+      }
+    }
     // uglify: {
     //   options: {
     //     mangle:true,
@@ -58,39 +58,39 @@ module.exports = function (grunt) {
     //     }
     //   }
     // }
-    image : {
-      dynamic : {
-        files:[{
-          expand:true,
-          cwd:'build/img/',
-          src:['**/*.{png,jpg,gif,svg,jpeg'],
-          dest:'dist/img/'
-        }]
-      }
-    },
-    jshint : {
-      options: {
-        jshintrc :'.jshintrc'
-      },
-      core: {
-        src:'dist/js/index.min.js'
-      },
-      demo: {
-         src:'dist/js/index1.min.js'
-      }
-    }
+    // image : {
+    //   dynamic : {
+    //     files:[{
+    //       expand:true,
+    //       cwd:'build/img/',
+    //       src:['**/*.{png,jpg,gif,svg,jpeg'],
+    //       dest:'dist/img/'
+    //     }]
+    //   }
+    // }
+    // jshint : {
+    //   options: {
+    //     jshintrc :'.jshintrc'
+    //   },
+    //   core: {
+    //     src:'dist/js/index.min.js'
+    //   },
+    //   demo: {
+    //      src:'dist/js/index1.min.js'
+    //   }
+    // }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-image');
-   // grunt.loadNpmTasks('grunt-contrib-less');
+  // grunt.loadNpmTasks('grunt-contrib-jshint');
+    // grunt.loadNpmTasks('grunt-image');
+    grunt.loadNpmTasks('grunt-contrib-less');
   // grunt.loadNpmTasks("grunt-contrib-concat");
-  // grunt.loadNpmTasks("grunt-contrib-watch");
-  // grunt.loadNpmTasks("grunt-contrib-uglify");
+   grunt.loadNpmTasks("grunt-contrib-watch");
+   grunt.loadNpmTasks("grunt-contrib-uglify");
   // grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  grunt.registerTask('link', ['jshint']);
-   grunt.registerTask('default', ['image','jshint']);
+  // grunt.registerTask('link', ['jshint']);
+   grunt.registerTask('default', ['watch']);
 }
 
 
