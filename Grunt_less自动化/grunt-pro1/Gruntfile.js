@@ -1,18 +1,15 @@
 module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    uglify: {
-      options: {
-        banner: '/*! <%= pkg.file %>Qboooogle <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-      },
-      my_target : {
-        files : {
-          'dist/js/index.min.js':['build/js/index.js'],
-          'dist/js/index1.min.js':['build/js/index.js'],
-          'dist/js/index2.min.js':['build/js/index.js']
-        }
-      }
-    }
+    // uglify: {
+    //   options: {
+    //     banner: '/*! <%= pkg.file %>Qboooogle <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+    //   },
+    //   build : {
+    //      src: 'build/less/index.less',
+    //      dest:'dist/css/index.css'
+    //   }
+    // }
     // watch: {
     //   files: ["build/less/*.less","build/js/*.js"],
     //   task: ["less", "cssmin"]
@@ -26,17 +23,17 @@ module.exports = function (grunt) {
     //     dest:"build/less/index3.less"
     //   }
     // },
-    // less : {
-    //   development: {
-    //     options: {
-    //       compress: true
-    //     },
-    //     file: {
-    //       "dist/css/index1.css":"build/less/index1.less",
-    //       "dist/css/index.css" : "build/less/index.less"
-    //     }
-    //   }
-    // },
+    less : {
+      development: {
+        options: {
+          compress: true
+        },
+        files: {
+          "dist/css/index1.css":"build/less/index1.less",
+          "dist/css/index.css" : "build/less/index.less"
+        }
+      }
+    }
     // uglify: {
     //   options: {
     //     mangle:true,
@@ -55,13 +52,13 @@ module.exports = function (grunt) {
     //   }
     // }
   });
-  // grunt.loadNpmTasks('grunt-contrib-less');
+   grunt.loadNpmTasks('grunt-contrib-less');
   // grunt.loadNpmTasks("grunt-contrib-concat");
   // grunt.loadNpmTasks("grunt-contrib-watch");
-  grunt.loadNpmTasks("grunt-contrib-uglify");
+  // grunt.loadNpmTasks("grunt-contrib-uglify");
   // grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('default', ['less']);
 }
 
 
